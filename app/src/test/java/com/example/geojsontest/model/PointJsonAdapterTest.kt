@@ -1,8 +1,11 @@
 package com.example.geojsontest.model
 
 import com.example.geojsontest.adapter.GeoshiJsonAdapterFactory
+import com.example.geojsontest.adapter.PointJsonAdapter
+import com.example.geojsontest.adapter.PositionJsonAdapter
 import com.squareup.moshi.JsonDataException
 import com.squareup.moshi.Moshi
+//import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -11,8 +14,11 @@ import org.junit.runners.JUnit4
 @RunWith(JUnit4::class)
 class PointJsonAdapterTest {
 
+  private val positionAdapter = PositionJsonAdapter()
+  private val pointAdapter = PointJsonAdapter(positionAdapter)
   private val geoshiJsonAdapterFactory = GeoshiJsonAdapterFactory()
-  private val moshi = Moshi.Builder().add(geoshiJsonAdapterFactory).build()
+//  private val kotlinJsonAdapterFactory = KotlinJsonAdapterFactory()
+  private val moshi = Moshi.Builder().add(pointAdapter).build()
 
   @Test
   fun testValidJsonToPoint() {
@@ -77,7 +83,8 @@ class PointJsonAdapterTest {
     )
 
     //When
-    val actual = moshi.adapter(Point::class.java).toJson(point)
+    val adapter = moshi.adapter(Point::class.java)
+    val actual = adapter.toJson(point)
 
     //Then
     Assert.assertEquals(expected, actual)
