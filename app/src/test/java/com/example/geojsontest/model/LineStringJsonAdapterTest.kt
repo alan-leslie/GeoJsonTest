@@ -1,6 +1,8 @@
 package com.example.geojsontest.model
 
+import com.example.geojsontest.adapter.GeometryTypeAdapter
 import com.example.geojsontest.adapter.GeoshiJsonAdapterFactory
+import com.example.geojsontest.adapter.PositionJsonAdapter
 import com.squareup.moshi.JsonDataException
 import com.squareup.moshi.Moshi
 import org.junit.Assert
@@ -9,8 +11,13 @@ import org.junit.Test
 
 class LineStringJsonAdapterTest {
 
+  private val positionAdapter = PositionJsonAdapter()
+  private val geometryTypeAdapter = GeometryTypeAdapter()
   private val geoshiJsonAdapterFactory = GeoshiJsonAdapterFactory()
-  private val moshi = Moshi.Builder().add(geoshiJsonAdapterFactory).build()
+  private val moshi = Moshi.Builder()
+    .add(positionAdapter)
+    .add(geometryTypeAdapter)
+    .build()
 
   @Test
   fun testValidJsonToLineString() {
@@ -18,6 +25,7 @@ class LineStringJsonAdapterTest {
     val jsonString = "{\"type\":\"LineString\",\"coordinates\":[[100.0,0.0],[101.0,1.0]]}"
 
     val expected = LineString(
+      type = GeometryType.LINESTRING,
       coordinates = listOf(
         Position(100.0, 0.0),
         Position(101.0, 1.0)
@@ -61,7 +69,7 @@ class LineStringJsonAdapterTest {
 
   }
 
-  @Test(expected = JsonDataException::class)
+  @Test(expected = IllegalArgumentException::class)
   fun testInvalidJsonOnlyOneCoordinate() {
     //Given
     val jsonString = "{\"type\":\"LineString\",\"coordinates\":[[100.0,0.0]]}"
@@ -70,10 +78,21 @@ class LineStringJsonAdapterTest {
     val actual = moshi.adapter(LineString::class.java).fromJson(jsonString)
   }
 
+  @Test(expected = JsonDataException::class)
+  fun testInvalidJsonTypeNotLineStringValue() {
+
+    //Given
+    val jsonString = "{\"type\":\"Polygon\",\"coordinates\":[[100.0,0.0],[101.0,1.0]]}"
+
+    //When
+    val actual = moshi.adapter(Point::class.java).fromJson(jsonString)
+  }
+
   @Test
   fun testLineStringToJson() {
     //Given
     val lineString = LineString(
+      type = GeometryType.LINESTRING,
       coordinates = listOf(
         Position(100.0, 0.0),
         Position(101.0, 1.0)

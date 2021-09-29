@@ -24,6 +24,7 @@ class FeatureCollectionJsonAdapterTest {
       listOf(
         Feature(
           geometry = Point(
+            type = GeometryType.POINT,
             coordinates = Position(102.0, 0.5)
           ),
           properties = mapOf(
@@ -32,6 +33,7 @@ class FeatureCollectionJsonAdapterTest {
         ),
         Feature(
           geometry = LineString(
+            type = GeometryType.LINESTRING,
             coordinates = listOf(
               Position(102.0, 0.0),
               Position(103.0, 1.0),
@@ -100,6 +102,7 @@ class FeatureCollectionJsonAdapterTest {
       listOf(
         Feature(
           geometry = Point(
+            type = GeometryType.POINT,
             coordinates = Position(102.0, 0.5)
           ),
           properties = mapOf(
@@ -108,6 +111,7 @@ class FeatureCollectionJsonAdapterTest {
         ),
         Feature(
           geometry = LineString(
+            type = GeometryType.LINESTRING,
             coordinates = listOf(
               Position(102.0, 0.0),
               Position(103.0, 1.0),

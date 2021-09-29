@@ -46,15 +46,15 @@ enum class GeometryType {
     @JvmStatic
     fun convertFromString(stringValue: String): GeometryType {
       return when (stringValue) {
-        "Point" -> GeometryType.POINT
-        "LineString" -> GeometryType.LINESTRING
-        "Polygon" -> GeometryType.POLYGON
-        "MultiPoint" -> GeometryType.MULTI_POINT
-        "MultiLineString" -> GeometryType.MULTI_LINE_STRING
-        "MultiPolygon" -> GeometryType.MULTI_POLYGON
-        "GeometryCollection" -> GeometryType.GEOMETRY_COLLECTION
-        "Feature" -> GeometryType.FEATURE
-        "FeatureCollection" -> GeometryType.FEATURE_COLLECTION
+        "Point" -> POINT
+        "LineString" -> LINESTRING
+        "Polygon" -> POLYGON
+        "MultiPoint" -> MULTI_POINT
+        "MultiLineString" -> MULTI_LINE_STRING
+        "MultiPolygon" -> MULTI_POLYGON
+        "GeometryCollection" -> GEOMETRY_COLLECTION
+        "Feature" -> FEATURE
+        "FeatureCollection" -> FEATURE_COLLECTION
         else -> throw IllegalArgumentException("$stringValue is not specified according to geojson spec")
       }
     }

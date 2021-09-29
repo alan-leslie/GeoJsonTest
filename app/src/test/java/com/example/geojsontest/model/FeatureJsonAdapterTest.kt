@@ -20,6 +20,7 @@ class FeatureJsonAdapterTest {
     val expected = Feature(
       id = null,
       geometry = Point(
+        type = GeometryType.POINT,
         coordinates = Position(102.0, 0.5)
       ),
       properties = mapOf(
@@ -65,6 +66,7 @@ class FeatureJsonAdapterTest {
     val expected = Feature(
       id = "FeatureId",
       geometry = Point(
+        type = GeometryType.POINT,
         coordinates = Position(102.0, 0.5)
       ),
       properties = mapOf(
@@ -88,6 +90,7 @@ class FeatureJsonAdapterTest {
     val expected = Feature(
       id = null,
       geometry = LineString(
+        type = GeometryType.LINESTRING,
         coordinates = listOf(
           Position(102.0, 0.0),
           Position(103.0, 1.0),
@@ -168,6 +171,7 @@ class FeatureJsonAdapterTest {
     val feature = Feature(
       id = null,
       geometry = Point(
+        type = GeometryType.POINT,
         coordinates = Position(102.0, 0.5)
       ),
       properties = mapOf(

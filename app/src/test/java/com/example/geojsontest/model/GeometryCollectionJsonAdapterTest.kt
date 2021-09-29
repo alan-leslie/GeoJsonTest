@@ -20,9 +20,11 @@ class GeometryCollectionJsonAdapterTest {
     val expected = GeometryCollection(
       geometries = listOf(
         Point(
+          type = GeometryType.POINT,
           coordinates = Position(100.0, 0.0)
         ),
         LineString(
+          type = GeometryType.LINESTRING,
           coordinates = listOf(
             Position(101.0, 0.0),
             Position(102.0, 1.0)
@@ -82,9 +84,11 @@ class GeometryCollectionJsonAdapterTest {
     val geometryCollection = GeometryCollection(
       geometries = listOf(
         Point(
+          type = GeometryType.POINT,
           coordinates = Position(100.0, 0.0)
         ),
         LineString(
+          type = GeometryType.LINESTRING,
           coordinates = listOf(
             Position(101.0, 0.0),
             Position(102.0, 1.0)
