@@ -4,6 +4,6 @@ data class MultiPolygon(
   val coordinates: List<List<List<Position>>>
 ) : Geometry() {
 
-  override fun getType(): GeometryType = GeometryType.MULTI_POLYGON
+  override fun getGeometryType(): GeometryType = GeometryType.MULTI_POLYGON
 
 }

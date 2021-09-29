@@ -13,7 +13,7 @@ class GeoshiJsonAdapterFactory : JsonAdapter.Factory {
         return PositionJsonAdapter()
       }
       Point::class.java -> {
-        return PointJsonAdapter(moshi.adapter(Position::class.java))
+        return PointJsonAdapter(moshi)
       }
       LineString::class.java -> {
         return LineStringJsonAdapter(moshi.adapter(Position::class.java))

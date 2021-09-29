@@ -1,5 +1,6 @@
 package com.example.geojsontest.model
 
+import com.example.geojsontest.adapter.GeometryTypeAdapter
 import com.example.geojsontest.adapter.GeoshiJsonAdapterFactory
 import com.example.geojsontest.adapter.PointJsonAdapter
 import com.example.geojsontest.adapter.PositionJsonAdapter
@@ -13,12 +14,13 @@ import org.junit.runners.JUnit4
 
 @RunWith(JUnit4::class)
 class PointJsonAdapterTest {
-
   private val positionAdapter = PositionJsonAdapter()
-  private val pointAdapter = PointJsonAdapter(positionAdapter)
+  private val geometryTypeAdapter = GeometryTypeAdapter()
   private val geoshiJsonAdapterFactory = GeoshiJsonAdapterFactory()
-//  private val kotlinJsonAdapterFactory = KotlinJsonAdapterFactory()
-  private val moshi = Moshi.Builder().add(pointAdapter).build()
+  private val moshi = Moshi.Builder()
+                      .add(positionAdapter)
+                      .add(geometryTypeAdapter)
+                      .build()
 
   @Test
   fun testValidJsonToPoint() {
@@ -27,6 +29,7 @@ class PointJsonAdapterTest {
     val jsonString = "{\"type\":\"Point\",\"coordinates\":[100.0,0.0]}"
 
     val expected = Point(
+      type = GeometryType.POINT,
       coordinates = Position(
         longitude = 100.0,
         latitude = 0.0
@@ -61,6 +64,16 @@ class PointJsonAdapterTest {
     val actual = moshi.adapter(Point::class.java).fromJson(jsonString)
   }
 
+  @Test(expected = IllegalArgumentException::class)
+  fun testInvalidJsonTypeNotPointValue() {
+
+    //Given
+    val jsonString = "{\"type\":\"Polygon\",\"coordinates\":[100.0,0.0]}"
+
+    //When
+    val actual = moshi.adapter(Point::class.java).fromJson(jsonString)
+  }
+
   @Test(expected = JsonDataException::class)
   fun testInvalidJsonCoordinateMissing() {
 
@@ -76,6 +89,7 @@ class PointJsonAdapterTest {
     //Given
     val expected = "{\"type\":\"Point\",\"coordinates\":[100.0,0.0]}"
     val point = Point(
+      type = GeometryType.POINT,
       coordinates = Position(
         longitude = 100.0,
         latitude = 0.0

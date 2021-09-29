@@ -11,6 +11,6 @@ data class Feature(
   val properties: Map<String, Any>
 ) : Geometry() {
 
-  override fun getType(): GeometryType = GeometryType.FEATURE
+  override fun getGeometryType(): GeometryType = GeometryType.FEATURE
 
 }

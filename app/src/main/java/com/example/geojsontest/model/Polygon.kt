@@ -4,6 +4,6 @@ data class Polygon(
   val coordinates: List<List<Position>>
 ) : Geometry() {
 
-  override fun getType(): GeometryType = GeometryType.POLYGON
+  override fun getGeometryType(): GeometryType = GeometryType.POLYGON
 
 }

@@ -12,11 +12,11 @@ package com.example.geojsontest.model
  * Feature in GeoJSON contain aGeometry object and additional properties,
  * FeatureCollection contains a list of Features.
  */
-enum class GeometryType() {
+enum class GeometryType {
   POINT,
   LINESTRING,
   POLYGON,
-  MULIT_POINT,
+  MULTI_POINT,
   MULTI_LINE_STRING,
   MULTI_POLYGON,
   GEOMETRY_COLLECTION,
@@ -31,7 +31,7 @@ enum class GeometryType() {
       POINT -> "Point"
       LINESTRING -> "LineString"
       POLYGON -> "Polygon"
-      MULIT_POINT -> "MultiPoint"
+      MULTI_POINT -> "MultiPoint"
       MULTI_LINE_STRING -> "MultiLineString"
       MULTI_POLYGON -> "MultiPolygon"
       GEOMETRY_COLLECTION -> "GeometryCollection"
@@ -49,7 +49,7 @@ enum class GeometryType() {
         "Point" -> GeometryType.POINT
         "LineString" -> GeometryType.LINESTRING
         "Polygon" -> GeometryType.POLYGON
-        "MultiPoint" -> GeometryType.MULIT_POINT
+        "MultiPoint" -> GeometryType.MULTI_POINT
         "MultiLineString" -> GeometryType.MULTI_LINE_STRING
         "MultiPolygon" -> GeometryType.MULTI_POLYGON
         "GeometryCollection" -> GeometryType.GEOMETRY_COLLECTION

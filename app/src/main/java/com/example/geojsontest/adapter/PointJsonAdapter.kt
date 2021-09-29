@@ -6,8 +6,9 @@ import com.example.geojsontest.model.Position
 import com.squareup.moshi.*
 
 internal class PointJsonAdapter constructor(
-  private val positionJsonAdapter: JsonAdapter<Position>
+  moshi: Moshi
 ) : JsonAdapter<Point>() {
+  private val positionJsonAdapter: JsonAdapter<Position> = moshi.adapter(Position::class.java)
 
   companion object {
     private const val KEY_TYPE = "type"
@@ -51,7 +52,7 @@ internal class PointJsonAdapter constructor(
       throw JsonDataException("Requires field : coordinates is missing at ${reader.path}")
     }
 
-    val point = Point(position)
+    val point = Point(type, position)
 
     return point
   }
@@ -62,7 +63,7 @@ internal class PointJsonAdapter constructor(
       writer.beginObject() // {
 
       writer.name(KEY_TYPE) // "type":
-      writer.value(value.getType().convertToString()) //"Point",
+      writer.value(value.getGeometryType().convertToString()) //"Point",
       writer.name(KEY_COORDINATES) //"coordinates":
       positionJsonAdapter.toJson(writer, value.coordinates) //[100.0, 1.0]
 
@@ -72,6 +73,4 @@ internal class PointJsonAdapter constructor(
     }
 
   }
-
-
 }

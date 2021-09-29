@@ -4,6 +4,6 @@ data class FeatureCollection(
   val features: List<Feature>
 ) : Geometry() {
 
-  override fun getType(): GeometryType = GeometryType.FEATURE_COLLECTION
+  override fun getGeometryType(): GeometryType = GeometryType.FEATURE_COLLECTION
 
 }

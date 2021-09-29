@@ -7,6 +7,6 @@ data class GeometryCollection(
   val geometries: List<Geometry>
 ) : Geometry() {
 
-  override fun getType(): GeometryType = GeometryType.GEOMETRY_COLLECTION
+  override fun getGeometryType(): GeometryType = GeometryType.GEOMETRY_COLLECTION
 
 }
