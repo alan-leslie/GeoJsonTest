@@ -18,6 +18,7 @@ class MultiLineStringJsonAdapterTest {
       "{\"type\":\"MultiLineString\",\"coordinates\":[[[100.0,0.0],[101.0,1.0]],[[102.0,2.0],[103.0,3.0]]]}"
 
     val expected = MultiLineString(
+      type = GeometryType.MULTI_LINE_STRING,
       coordinates = listOf(
         listOf(
           Position(100.0, 0.0),
@@ -82,6 +83,7 @@ class MultiLineStringJsonAdapterTest {
   fun testMultiLineStringToJson() {
     //Given
     val multiLineString = MultiLineString(
+      type = GeometryType.MULTI_LINE_STRING,
       coordinates = listOf(
         listOf(
           Position(100.0, 0.0),

@@ -6,9 +6,9 @@ import com.example.geojsontest.model.Position
 import com.squareup.moshi.*
 
 internal class MultiLineStringJsonAdapter constructor(
-  private val positionJsonAdapter: JsonAdapter<Position>
+  moshi: Moshi
 ) : JsonAdapter<MultiLineString>() {
-
+  private val positionJsonAdapter: JsonAdapter<Position> = moshi.adapter(Position::class.java)
 
   companion object {
     private const val KEY_TYPE = "type"
@@ -71,7 +71,7 @@ internal class MultiLineStringJsonAdapter constructor(
       throw JsonDataException("'cooridnates' must bean array of two or more line strings at ${reader.path}")
     }
 
-    return MultiLineString(lineStringPositionList)
+    return MultiLineString(type, lineStringPositionList)
   }
 
   @ToJson
@@ -81,7 +81,7 @@ internal class MultiLineStringJsonAdapter constructor(
     } else {
       writer.beginObject() // {
       writer.name(MultiLineStringJsonAdapter.KEY_TYPE) // "type":
-      writer.value(value.getType().convertToString()) // "MultiLine",
+      writer.value(value.getGeometryType().convertToString()) // "MultiLine",
 
       writer.name(MultiLineStringJsonAdapter.KEY_COORDINATES) // "coordinates":
       writer.beginArray() // [

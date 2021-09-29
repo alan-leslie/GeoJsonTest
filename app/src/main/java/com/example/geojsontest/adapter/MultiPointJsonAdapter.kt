@@ -6,8 +6,9 @@ import com.example.geojsontest.model.Position
 import com.squareup.moshi.*
 
 internal class MultiPointJsonAdapter constructor(
-  private val positionJsonAdapter: JsonAdapter<Position>
+  moshi: Moshi
 ) : JsonAdapter<MultiPoint>() {
+  private val positionJsonAdapter: JsonAdapter<Position> = moshi.adapter(Position::class.java)
 
   companion object {
     private const val KEY_TYPE = "type"
@@ -54,7 +55,7 @@ internal class MultiPointJsonAdapter constructor(
       throw JsonDataException("Requires field : 'type' is missing at ${reader.path}")
     }
 
-    if (type != GeometryType.MULIT_POINT) {
+    if (type != GeometryType.MULTI_POINT) {
       throw JsonDataException("'type' is not of MultiPoint at ${reader.path}")
     }
 
@@ -62,7 +63,7 @@ internal class MultiPointJsonAdapter constructor(
       throw  JsonDataException("'cooridnates' must bean array of one ore more positions ${reader.path}")
     }
 
-    return MultiPoint(coordinates = positions)
+    return MultiPoint(type, coordinates = positions)
   }
 
   @ToJson
@@ -72,7 +73,7 @@ internal class MultiPointJsonAdapter constructor(
     } else {
       writer.beginObject() // {
       writer.name(MultiPointJsonAdapter.KEY_TYPE) // "type":
-      writer.value(value.getType().convertToString()) // "MultiLine",
+      writer.value(value.getGeometryType().convertToString()) // "MultiLine",
 
       writer.name(MultiPointJsonAdapter.KEY_COORDINATES) // "coordinates":
       writer.beginArray() // [

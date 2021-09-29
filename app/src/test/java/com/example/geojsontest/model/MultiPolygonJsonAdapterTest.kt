@@ -18,6 +18,7 @@ class MultiPolygonJsonAdapterTest {
       "{\"type\":\"MultiPolygon\",\"coordinates\":[[[[102.0,2.0],[103.0,2.0],[103.0,3.0],[102.0,3.0],[102.0,2.0]]],[[[100.0,0.0],[101.0,0.0],[101.0,1.0],[100.0,1.0],[100.0,0.0]],[[100.2,0.2],[100.2,0.8],[100.8,0.8],[100.8,0.2],[100.2,0.2]]]]}"
 
     val expected = MultiPolygon(
+      type = GeometryType.MULTI_POLYGON,
       coordinates = listOf(
         listOf(
           listOf(
@@ -92,6 +93,7 @@ class MultiPolygonJsonAdapterTest {
   fun testMultiPolygonToJson() {
     //Given
     val multiPolygon = MultiPolygon(
+      type = GeometryType.MULTI_POLYGON,
       coordinates = listOf(
         listOf(
           listOf(

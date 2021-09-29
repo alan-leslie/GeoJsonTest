@@ -18,6 +18,7 @@ class MultiPointJsonAdapterTest {
     val jsonString = "{\"type\":\"MultiPoint\",\"coordinates\":[[100.0,0.0],[101.0,1.0]]}"
 
     val expected = MultiPoint(
+      type = GeometryType.MULTI_POINT,
       coordinates = listOf(
         Position(100.0, 0.0),
         Position(101.0, 1.0)
@@ -36,6 +37,7 @@ class MultiPointJsonAdapterTest {
     //Given
     val jsonString = "{\"type\":\"MultiPoint\",\"coordinates\":[[100.0,0.0]]}"
     val expected = MultiPoint(
+      type = GeometryType.MULTI_POINT,
       coordinates = listOf(
         Position(100.0, 0.0)
       )
@@ -81,6 +83,7 @@ class MultiPointJsonAdapterTest {
   fun testMultiPointToJson() {
     //Given
     val multiPoint = MultiPoint(
+      type = GeometryType.MULTI_POINT,
       coordinates = listOf(
         Position(100.0, 0.0),
         Position(101.0, 1.0)

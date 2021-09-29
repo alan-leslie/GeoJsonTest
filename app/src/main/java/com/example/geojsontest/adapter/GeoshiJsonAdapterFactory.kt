@@ -22,13 +22,13 @@ class GeoshiJsonAdapterFactory : JsonAdapter.Factory {
         return PolygonJsonAdapter(moshi)
       }
       MultiPoint::class.java -> {
-        return MultiPointJsonAdapter(moshi.adapter(Position::class.java))
+        return MultiPointJsonAdapter(moshi)
       }
       MultiLineString::class.java -> {
-        return MultiLineStringJsonAdapter(moshi.adapter(Position::class.java))
+        return MultiLineStringJsonAdapter(moshi)
       }
       MultiPolygon::class.java -> {
-        return MultiPolygonJsonAdapter(moshi.adapter(Position::class.java))
+        return MultiPolygonJsonAdapter(moshi)
       }
       GeometryCollection::class.java -> {
         return GeometryCollectionJsonAdapter(
