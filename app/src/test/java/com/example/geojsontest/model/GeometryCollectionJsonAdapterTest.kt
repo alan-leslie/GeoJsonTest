@@ -1,5 +1,6 @@
 package com.example.geojsontest.model
 
+import com.example.geojsontest.adapter.GeometryTypeAdapter
 import com.example.geojsontest.adapter.GeoshiJsonAdapterFactory
 import com.squareup.moshi.JsonDataException
 import com.squareup.moshi.Moshi
@@ -7,9 +8,12 @@ import org.junit.Assert
 import org.junit.Test
 
 class GeometryCollectionJsonAdapterTest {
-
+  private val geometryTypeAdapter = GeometryTypeAdapter()
   private val geoshiJsonAdapterFactory = GeoshiJsonAdapterFactory()
-  private val moshi = Moshi.Builder().add(geoshiJsonAdapterFactory).build()
+  private val moshi = Moshi.Builder()
+    .add(geometryTypeAdapter)
+    .add(geoshiJsonAdapterFactory)
+    .build()
 
   @Test
   fun convertJsonStringToGeometryCollection() {
