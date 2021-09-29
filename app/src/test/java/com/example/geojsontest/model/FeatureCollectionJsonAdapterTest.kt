@@ -47,6 +47,7 @@ class FeatureCollectionJsonAdapterTest {
           )
         ), Feature(
           geometry = Polygon(
+            type = GeometryType.POLYGON,
             coordinates = listOf(
               listOf(
                 Position(100.0, 0.0),
@@ -125,6 +126,7 @@ class FeatureCollectionJsonAdapterTest {
           )
         ), Feature(
           geometry = Polygon(
+            type = GeometryType.POLYGON,
             coordinates = listOf(
               listOf(
                 Position(100.0, 0.0),

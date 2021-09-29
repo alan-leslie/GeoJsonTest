@@ -120,6 +120,7 @@ class FeatureJsonAdapterTest {
     val expected = Feature(
       id = null,
       geometry = Polygon(
+        type = GeometryType.POLYGON,
         coordinates = listOf(
           listOf(
             Position(100.0, 0.0),

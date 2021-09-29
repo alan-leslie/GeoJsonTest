@@ -6,8 +6,9 @@ import com.example.geojsontest.model.Position
 import com.squareup.moshi.*
 
 internal class PolygonJsonAdapter constructor(
-  private val positionJsonAdapter: JsonAdapter<Position>
+  moshi: Moshi
 ) : JsonAdapter<Polygon>() {
+  private val positionJsonAdapter: JsonAdapter<Position> = moshi.adapter(Position::class.java)
 
   companion object {
     private const val KEY_TYPE = "type"
@@ -70,7 +71,7 @@ internal class PolygonJsonAdapter constructor(
       throw JsonDataException("'coordinates' must bean array of two or more line strings at ${reader.path}")
     }
 
-    return Polygon(lineStringPositionList)
+    return Polygon(type, lineStringPositionList)
   }
 
   @ToJson
@@ -80,7 +81,7 @@ internal class PolygonJsonAdapter constructor(
     } else {
       writer.beginObject() // {
       writer.name(PolygonJsonAdapter.KEY_TYPE) // "type":
-      writer.value(value.getType().convertToString()) // "MultiLine",
+      writer.value(value.getGeometryType().convertToString()) // "MultiLine",
 
       writer.name(PolygonJsonAdapter.KEY_COORDINATES) // "coordinates":
       writer.beginArray() // [
