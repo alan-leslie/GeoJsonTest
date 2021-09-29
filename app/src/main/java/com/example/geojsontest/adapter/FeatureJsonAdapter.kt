@@ -64,7 +64,7 @@ internal class FeatureJsonAdapter(
                   val polygon = polygonJsonAdapter.fromJsonValue(jsonValueMap)
                   if (polygon != null) geometry = polygon
                 }
-                GeometryType.MULIT_POINT -> {
+                GeometryType.MULTI_POINT -> {
                   val multiPoint = multiPointJsonAdapter.fromJsonValue(jsonValueMap)
                   if (multiPoint != null) geometry = multiPoint
                 }
@@ -124,14 +124,14 @@ internal class FeatureJsonAdapter(
     } else {
       writer.beginObject()
       writer.name(FeatureJsonAdapter.KEY_TYPE) // "type":
-      writer.value(value.getType().convertToString()) // "Feature",
+      writer.value(value.getGeometryType().convertToString()) // "Feature",
 
       writer.name(FeatureJsonAdapter.KEY_GEOMETRY) // "geometry":
       val geometry = value.geometry
 
       if (geometry != null) {
 
-        val type = geometry?.getType()
+        val type = geometry?.getGeometryType()
 
         when (geometry) {
           is Point -> pointJsonAdapter.toJson(writer, geometry)

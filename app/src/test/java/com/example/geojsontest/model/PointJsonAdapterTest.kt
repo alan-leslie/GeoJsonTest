@@ -1,12 +1,9 @@
 package com.example.geojsontest.model
 
 import com.example.geojsontest.adapter.GeometryTypeAdapter
-//import com.example.geojsontest.adapter.GeoshiJsonAdapterFactory
-//import com.example.geojsontest.adapter.PointJsonAdapter
 import com.example.geojsontest.adapter.PositionJsonAdapter
 import com.squareup.moshi.JsonDataException
 import com.squareup.moshi.Moshi
-//import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -16,7 +13,6 @@ import org.junit.runners.JUnit4
 class PointJsonAdapterTest {
   private val positionAdapter = PositionJsonAdapter()
   private val geometryTypeAdapter = GeometryTypeAdapter()
-//  private val geoshiJsonAdapterFactory = GeoshiJsonAdapterFactory()
   private val moshi = Moshi.Builder()
                       .add(positionAdapter)
                       .add(geometryTypeAdapter)

@@ -55,7 +55,7 @@ class GeometryCollectionJsonAdapter constructor(
                   val polygon = polygonJsonAdapter.fromJsonValue(jsonValueMap)
                   if (polygon != null) geometries.add(polygon)
                 }
-                GeometryType.MULIT_POINT -> {
+                GeometryType.MULTI_POINT -> {
                   val multiPoint = multiPointJsonAdapter.fromJsonValue(jsonValueMap)
                   if (multiPoint != null) geometries.add(multiPoint)
                 }
@@ -109,12 +109,12 @@ class GeometryCollectionJsonAdapter constructor(
     } else {
       writer.beginObject()
       writer.name(GeometryCollectionJsonAdapter.KEY_TYPE) // "type":
-      writer.value(value.getType().convertToString()) // "GeometryCollection",
+      writer.value(value.getGeometryType().convertToString()) // "GeometryCollection",
 
       writer.name(GeometryCollectionJsonAdapter.KEY_GEOMETRIES) // "geometries":
       writer.beginArray() // [
       value.geometries.forEach { geometry ->
-        val type = geometry.getType()
+        val type = geometry.getGeometryType()
 
         when (geometry) {
           is Point -> pointJsonAdapter.toJson(writer, geometry)

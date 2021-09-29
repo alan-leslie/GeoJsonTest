@@ -79,7 +79,7 @@ internal class FeatureCollectionJsonAdapter constructor(
     } else {
       writer.beginObject()
       writer.name(FeatureCollectionJsonAdapter.KEY_TYPE) // "type":
-      writer.value(value.getType().convertToString()) // "GeometryCollection",
+      writer.value(value.getGeometryType().convertToString()) // "GeometryCollection",
 
       writer.name(FeatureCollectionJsonAdapter.KEY_FEATURE) // "geometries":
       writer.beginArray() // [
