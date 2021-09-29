@@ -2,9 +2,16 @@ package com.example.geojsontest.model
 
 import com.squareup.moshi.JsonClass
 
-//@JsonClass(generateAdapter = true)
+@JsonClass(generateAdapter = true)
 data class FeatureCollection(
+  val type : GeometryType,
   val features: List<Feature>
 ) : Geometry() {
-  override fun getGeometryType(): GeometryType = GeometryType.FEATURE_COLLECTION
+  init {
+    require(type == GeometryType.FEATURE_COLLECTION) {
+      "type must be feature collection"
+    }
+  }
+
+  override fun getGeometryType(): GeometryType = type
 }

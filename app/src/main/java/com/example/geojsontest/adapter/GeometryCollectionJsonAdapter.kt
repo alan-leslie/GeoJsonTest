@@ -100,7 +100,7 @@ class GeometryCollectionJsonAdapter constructor(
       throw JsonDataException("'type' is not of GeometryCollection at ${reader.path}")
     }
 
-    return GeometryCollection(geometries)
+    return GeometryCollection(type, geometries)
   }
 
   @ToJson

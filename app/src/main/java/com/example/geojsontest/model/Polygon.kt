@@ -13,5 +13,5 @@ data class Polygon(
     }
   }
 
-  override fun getGeometryType(): GeometryType = GeometryType.POLYGON
+  override fun getGeometryType(): GeometryType = type
 }

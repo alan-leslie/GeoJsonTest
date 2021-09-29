@@ -9,8 +9,15 @@ text.
  */
 data class Feature(
   val id: String? = null,
+  val type : GeometryType,
   val geometry: Geometry? = null,
   val properties: Map<String, Any>
-) : Geometry() {
-  override fun getGeometryType(): GeometryType = GeometryType.FEATURE
+): Geometry() {
+  init {
+    require(type == GeometryType.FEATURE) {
+      "type must be feature"
+    }
+  }
+
+  override fun getGeometryType(): GeometryType = type
 }

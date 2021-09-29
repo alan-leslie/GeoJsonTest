@@ -13,5 +13,5 @@ data class Point(
     }
   }
 
-  override fun getGeometryType(): GeometryType = GeometryType.POINT
+  override fun getGeometryType(): GeometryType = type
 }

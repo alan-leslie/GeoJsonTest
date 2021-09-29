@@ -24,9 +24,11 @@ class FeatureCollectionJsonAdapterTest {
 
 
     val expected = FeatureCollection(
+      type = GeometryType.FEATURE_COLLECTION,
       features =
       listOf(
         Feature(
+          type = GeometryType.FEATURE,
           geometry = Point(
             type = GeometryType.POINT,
             coordinates = Position(102.0, 0.5)
@@ -36,6 +38,7 @@ class FeatureCollectionJsonAdapterTest {
           )
         ),
         Feature(
+          type = GeometryType.FEATURE,
           geometry = LineString(
             type = GeometryType.LINESTRING,
             coordinates = listOf(
@@ -50,6 +53,7 @@ class FeatureCollectionJsonAdapterTest {
             "prop1" to 0.0
           )
         ), Feature(
+          type = GeometryType.FEATURE,
           geometry = Polygon(
             type = GeometryType.POLYGON,
             coordinates = listOf(
@@ -103,9 +107,11 @@ class FeatureCollectionJsonAdapterTest {
   fun convertFeatureCollectionToJsonString() {
     //Given
     val featureCollection = FeatureCollection(
+      type = GeometryType.FEATURE_COLLECTION,
       features =
       listOf(
         Feature(
+          type = GeometryType.FEATURE,
           geometry = Point(
             type = GeometryType.POINT,
             coordinates = Position(102.0, 0.5)
@@ -115,6 +121,7 @@ class FeatureCollectionJsonAdapterTest {
           )
         ),
         Feature(
+          type = GeometryType.FEATURE,
           geometry = LineString(
             type = GeometryType.LINESTRING,
             coordinates = listOf(
@@ -129,6 +136,7 @@ class FeatureCollectionJsonAdapterTest {
             "prop1" to 0.0
           )
         ), Feature(
+          type = GeometryType.FEATURE,
           geometry = Polygon(
             type = GeometryType.POLYGON,
             coordinates = listOf(

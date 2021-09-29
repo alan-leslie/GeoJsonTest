@@ -22,6 +22,7 @@ class GeometryCollectionJsonAdapterTest {
       "{\"type\":\"GeometryCollection\",\"geometries\":[{\"type\":\"Point\",\"coordinates\":[100.0,0.0]},{\"type\":\"LineString\",\"coordinates\":[[101.0,0.0],[102.0,1.0]]}]}"
 
     val expected = GeometryCollection(
+      type = GeometryType.GEOMETRY_COLLECTION,
       geometries = listOf(
         Point(
           type = GeometryType.POINT,
@@ -51,6 +52,7 @@ class GeometryCollectionJsonAdapterTest {
       "{\"type\":\"GeometryCollection\",\"geometries\":[]}"
 
     val expected = GeometryCollection(
+      type = GeometryType.GEOMETRY_COLLECTION,
       geometries = emptyList()
     )
 
@@ -86,6 +88,7 @@ class GeometryCollectionJsonAdapterTest {
   fun convertGeometryCollectionToJsonString() {
     //Given
     val geometryCollection = GeometryCollection(
+      type = GeometryType.GEOMETRY_COLLECTION,
       geometries = listOf(
         Point(
           type = GeometryType.POINT,

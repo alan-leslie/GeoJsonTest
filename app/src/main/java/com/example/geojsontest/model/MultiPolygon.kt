@@ -13,5 +13,5 @@ data class MultiPolygon(
     }
   }
 
-  override fun getGeometryType(): GeometryType = GeometryType.MULTI_POLYGON
+  override fun getGeometryType(): GeometryType = type
 }

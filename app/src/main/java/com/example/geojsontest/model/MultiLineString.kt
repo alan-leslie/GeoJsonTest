@@ -13,5 +13,5 @@ data class MultiLineString(
     }
   }
 
-  override fun getGeometryType(): GeometryType = GeometryType.MULTI_LINE_STRING
+  override fun getGeometryType(): GeometryType = type
 }

@@ -15,5 +15,5 @@ data class LineString(
       "there must be more than one coordinate"
     }
   }
-  override fun getGeometryType(): GeometryType = GeometryType.LINESTRING
+  override fun getGeometryType(): GeometryType = type
 }

@@ -13,5 +13,5 @@ data class MultiPoint(
     }
   }
 
-  override fun getGeometryType(): GeometryType = GeometryType.MULTI_POINT
+  override fun getGeometryType(): GeometryType = type
 }

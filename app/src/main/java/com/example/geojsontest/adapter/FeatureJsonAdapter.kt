@@ -113,6 +113,7 @@ internal class FeatureJsonAdapter(
 
     return Feature(
       id = id,
+      type = GeometryType.FEATURE,
       geometry = geometry,
       properties = properties
     )
@@ -125,7 +126,7 @@ internal class FeatureJsonAdapter(
     } else {
       writer.beginObject()
       writer.name(FeatureJsonAdapter.KEY_TYPE) // "type":
-      writer.value(value.getGeometryType().convertToString()) // "Feature",
+      writer.value(GeometryType.FEATURE.convertToString()) // "Feature",
 
       writer.name(FeatureJsonAdapter.KEY_GEOMETRY) // "geometry":
       val geometry = value.geometry
