@@ -2,12 +2,14 @@ package com.example.geojsontest.adapter
 
 import com.example.geojsontest.model.Feature
 import com.example.geojsontest.model.FeatureCollection
+import com.example.geojsontest.model.GeometryCollection
 import com.example.geojsontest.model.GeometryType
 import com.squareup.moshi.*
 
 internal class FeatureCollectionJsonAdapter constructor(
-  private val featureJsonAdapter: JsonAdapter<Feature>
+  moshi: Moshi
 ) : JsonAdapter<FeatureCollection>() {
+  private val featureJsonAdapter: JsonAdapter<Feature> = moshi.adapter(Feature::class.java)
 
   companion object {
     private const val KEY_TYPE = "type"

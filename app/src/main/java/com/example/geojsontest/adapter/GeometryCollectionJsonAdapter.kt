@@ -4,13 +4,14 @@ import com.example.geojsontest.model.*
 import com.squareup.moshi.*
 
 class GeometryCollectionJsonAdapter constructor(
-  private val pointJsonAdapter: JsonAdapter<Point>,
-  private val lineStringJsonAdapter: JsonAdapter<LineString>,
-  private val polygonJsonAdapter: JsonAdapter<Polygon>,
-  private val multiPointJsonAdapter: JsonAdapter<MultiPoint>,
-  private val multiLineStringJsonAdapter: JsonAdapter<MultiLineString>,
-  private val multiPolygonJsonAdapter: JsonAdapter<MultiPolygon>
+  moshi: Moshi
 ) : JsonAdapter<GeometryCollection>() {
+  private val pointJsonAdapter: JsonAdapter<Point> = moshi.adapter(Point::class.java)
+  private val lineStringJsonAdapter: JsonAdapter<LineString> = moshi.adapter(LineString::class.java)
+  private val polygonJsonAdapter: JsonAdapter<Polygon> = moshi.adapter(Polygon::class.java)
+  private val multiPointJsonAdapter: JsonAdapter<MultiPoint> = moshi.adapter(MultiPoint::class.java)
+  private val multiLineStringJsonAdapter: JsonAdapter<MultiLineString> = moshi.adapter(MultiLineString::class.java)
+  private val multiPolygonJsonAdapter: JsonAdapter<MultiPolygon> = moshi.adapter(MultiPolygon::class.java)
 
   companion object {
     private const val KEY_TYPE = "type"

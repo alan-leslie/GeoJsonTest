@@ -13,52 +13,33 @@ class GeoshiJsonAdapterFactory : JsonAdapter.Factory {
         return PositionJsonAdapter()
       }
       Point::class.java -> {
-        return com.example.geojsontest.model.PointJsonAdapter(moshi)
+        return PointJsonAdapter(moshi)
       }
       LineString::class.java -> {
-        return com.example.geojsontest.model.LineStringJsonAdapter(moshi)
+        return LineStringJsonAdapter(moshi)
       }
       Polygon::class.java -> {
-        return com.example.geojsontest.model.PolygonJsonAdapter(moshi)
+        return PolygonJsonAdapter(moshi)
       }
       MultiPoint::class.java -> {
-        return com.example.geojsontest.model.MultiPointJsonAdapter(moshi)
+        return MultiPointJsonAdapter(moshi)
       }
       MultiLineString::class.java -> {
-        return com.example.geojsontest.model.MultiLineStringJsonAdapter(moshi)
+        return MultiLineStringJsonAdapter(moshi)
       }
       MultiPolygon::class.java -> {
-        return com.example.geojsontest.model.MultiPolygonJsonAdapter(moshi)
+        return MultiPolygonJsonAdapter(moshi)
       }
       GeometryCollection::class.java -> {
-        return GeometryCollectionJsonAdapter(
-          moshi.adapter(Point::class.java),
-          moshi.adapter(LineString::class.java),
-          moshi.adapter(Polygon::class.java),
-          moshi.adapter(MultiPoint::class.java),
-          moshi.adapter(MultiLineString::class.java),
-          moshi.adapter(MultiPolygon::class.java)
-        )
+        return GeometryCollectionJsonAdapter(moshi)
       }
       Feature::class.java -> {
-        val wildCardAdapter = moshi.adapter<Any>(Any::class.java)
-        return FeatureJsonAdapter(
-          wildCardAdapter,
-          moshi.adapter(Point::class.java),
-          moshi.adapter(LineString::class.java),
-          moshi.adapter(Polygon::class.java),
-          moshi.adapter(MultiPoint::class.java),
-          moshi.adapter(MultiLineString::class.java),
-          moshi.adapter(MultiPolygon::class.java),
-          moshi.adapter(GeometryCollection::class.java)
-        )
+        return FeatureJsonAdapter(moshi)
       }
       FeatureCollection::class.java -> {
-        return FeatureCollectionJsonAdapter(moshi.adapter(Feature::class.java))
+        return FeatureCollectionJsonAdapter(moshi)
       }
     }
     return null
   }
-
-
 }
