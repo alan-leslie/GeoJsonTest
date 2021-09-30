@@ -1,7 +1,5 @@
 package com.example.geojsontest.model
 
-import com.squareup.moshi.JsonClass
-
 /**
  * Each element in the "geometries" array of a GeometryCollection is one of the {GeometryType}:
  */

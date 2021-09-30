@@ -6,7 +6,6 @@ import com.squareup.moshi.Moshi
 import java.lang.reflect.Type
 
 class GeoshiJsonAdapterFactory : JsonAdapter.Factory {
-
   override fun create(type: Type, annotations: MutableSet<out Annotation>, moshi: Moshi): JsonAdapter<*>? {
     when (type) {
       Position::class.java -> {

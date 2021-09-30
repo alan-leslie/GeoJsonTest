@@ -42,7 +42,6 @@ enum class GeometryType {
   }
 
   companion object {
-
     @JvmStatic
     fun convertFromString(stringValue: String): GeometryType {
       return when (stringValue) {
@@ -58,7 +57,5 @@ enum class GeometryType {
         else -> throw IllegalArgumentException("$stringValue is not specified according to geojson spec")
       }
     }
-
   }
-
 }

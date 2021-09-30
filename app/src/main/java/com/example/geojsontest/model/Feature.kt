@@ -1,7 +1,5 @@
 package com.example.geojsontest.model
 
-import com.squareup.moshi.JsonClass
-
 /**
  * A Feature object represents a spatially bounded thing.  Every Feature
 object is a GeoJSON object no matter where it occurs in a GeoJSON

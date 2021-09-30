@@ -1,7 +1,6 @@
 package com.example.geojsontest.adapter
 
 import com.squareup.moshi.FromJson
-//import com.squareup.moshi.JsonDataException
 import com.squareup.moshi.ToJson
 import com.example.geojsontest.model.GeometryType
 

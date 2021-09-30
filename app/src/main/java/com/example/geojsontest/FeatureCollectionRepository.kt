@@ -9,8 +9,6 @@ import androidx.lifecycle.MutableLiveData
 import com.example.geojsontest.adapter.GeometryTypeAdapter
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.Types
-//import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import java.io.IOException
 import java.io.InputStream
 
@@ -39,11 +37,8 @@ internal open class FeatureCollectionRepositoryImpl(
      * Sets and returns the LiveData object so observers will be notified of the last change
      */
     override suspend fun getFeatureCollection() : LiveData<FeatureCollection> {
-//        Thread.sleep(15000)
-
         val featureCollectionJson = getFeatureCollectionJSON()
 
-//        val listType = Types.newParameterizedType(List::class.java, FeatureCollection::class.java)
         val adapter: JsonAdapter<FeatureCollection> = moshi.adapter(FeatureCollection::class.java)
         val result = adapter.fromJson(featureCollectionJson)
 

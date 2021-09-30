@@ -4,7 +4,6 @@ import com.example.geojsontest.model.Position
 import com.squareup.moshi.*
 
 internal class PositionJsonAdapter : JsonAdapter<Position>() {
-
   @FromJson
   override fun fromJson(reader: JsonReader): Position? {
     val latLngList = mutableListOf<Double>()
@@ -50,6 +49,4 @@ internal class PositionJsonAdapter : JsonAdapter<Position>() {
       writer.nullValue()
     }
   }
-
-
 }

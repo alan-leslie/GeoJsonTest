@@ -6,7 +6,6 @@ import org.junit.Assert
 import org.junit.Test
 
 class GeoshiJsonAdapterFactoryTest {
-
   private val geoshiJsonAdapterFactory = GeoshiJsonAdapterFactory()
   private val moshi = Moshi.Builder().add(geoshiJsonAdapterFactory).build()
 
@@ -80,6 +79,4 @@ class GeoshiJsonAdapterFactoryTest {
     val expected = FeatureCollectionJsonAdapter::class.java
     return Assert.assertEquals(expected, actual!!::class.java)
   }
-
-
 }

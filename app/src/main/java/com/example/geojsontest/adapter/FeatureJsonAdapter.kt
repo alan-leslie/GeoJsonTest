@@ -162,6 +162,4 @@ internal class FeatureJsonAdapter(
       writer.endObject()
     }
   }
-
-
 }

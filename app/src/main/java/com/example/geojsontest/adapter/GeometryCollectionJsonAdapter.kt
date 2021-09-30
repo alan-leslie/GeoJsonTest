@@ -133,5 +133,4 @@ class GeometryCollectionJsonAdapter constructor(
       writer.endObject()
     }
   }
-
 }
